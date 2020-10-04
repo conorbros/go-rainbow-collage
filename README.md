@@ -2,7 +2,7 @@
 
 <img src="images/GOPHER_ROCKS.png" width="200">
 
-`go-rainbow-collage` lets you create colour sorted collages from an array of images.
+`go-rainbow-collage` lets you create colour sorted collages from an array of images. This was originally part of a personal project that I decided to make open source in case anyone finds it useful.
 
 ## Installation
 
