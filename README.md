@@ -16,7 +16,7 @@ Import the library and supply an array of images and desired x/y dimensions of t
 import collage "github.com/conorbros/go-rainbow-collage"
 
 // arguments require an array of images
-images := make([]image.Image, 100)
+images := make([]*image.Image, 100)
 
 collage, _ := collage.New(images, 10, 10)
 
