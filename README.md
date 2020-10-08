@@ -10,7 +10,7 @@
 
 ## Usage
 
-Import the library and supply an array of images and desired x/y dimensions of the collage.
+Import the library and supply an array of images (as filepaths or Image type), the desired x/y dimensions of the collage and if the array is already sorted or not.
 
 ```Go
 import collage "github.com/conorbros/go-rainbow-collage"
@@ -18,7 +18,7 @@ import collage "github.com/conorbros/go-rainbow-collage"
 // arguments require an array of images
 images := make([]*image.Image, 100)
 
-collage, _ := collage.ProcessImages(images, 10, 10)
+collage, _ := collage.ProcessImages(images, 10, 10, false)
 
 // do something with the output
 outputImage, _ := os.Create("output.jpeg")
@@ -33,7 +33,7 @@ import collage "github.com/conorbros/go-rainbow-collage"
 // arguments require an array of images
 imagePaths := make([]*string, 100)
 
-collage, _ := collage.ProcessPaths(imagePaths, 10, 10)
+collage, _ := collage.ProcessPaths(imagePaths, 10, 10, false)
 
 // do something with the output
 outputImage, _ := os.Create("output.jpeg")
