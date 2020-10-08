@@ -2,7 +2,7 @@
 
 <img src="images/GOPHER_ROCKS.png" width="200">
 
-`go-rainbow-collage` lets you create colour sorted collages from an array of images.
+`go-rainbow-collage` lets you create colour sorted collages from an array of images. This code was originally part of a personal project and I decided to make it open source in case anyone finds it useful.
 
 ## Installation
 
@@ -16,15 +16,29 @@ Import the library and supply an array of images and desired x/y dimensions of t
 import collage "github.com/conorbros/go-rainbow-collage"
 
 // arguments require an array of images
-images := make([]image.Image, 100)
+images := make([]*image.Image, 100)
 
-collage, _ := collage.New(images, 10, 10)
+collage, _ := collage.ProcessImages(images, 10, 10)
 
 // do something with the output
 outputImage, _ := os.Create("output.jpeg")
 
 jpeg.Encode(outputImage, collage, &jpeg.Options{Quality: 80})
 
+```
+
+```Go
+import collage "github.com/conorbros/go-rainbow-collage"
+
+// arguments require an array of images
+imagePaths := make([]*string, 100)
+
+collage, _ := collage.ProcessPaths(imagePaths, 10, 10)
+
+// do something with the output
+outputImage, _ := os.Create("output.jpeg")
+
+jpeg.Encode(outputImage, collage, &jpeg.Options{Quality: 80})
 ```
 
 ## Examples

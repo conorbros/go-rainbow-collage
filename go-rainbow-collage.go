@@ -4,6 +4,7 @@ import (
 	"image"
 	"image/color"
 	"math"
+	"os"
 	"sort"
 	"sync"
 
@@ -209,4 +210,26 @@ func New(images []*image.Image, x int, y int) (*image.RGBA, error) {
 		return nil, err
 	}
 	return collage, nil
+}
+
+func ProcessImages(images []*image.Image, x int, y int) (*image.RGBA, error) {
+	collage, err := New(images, x, y)
+	return collage, err
+}
+
+func ProcessPaths(imageFilepaths []*string, x int, y int) (*image.RGBA, error) {
+	images := make([]*image.Image, x*y)
+
+	for i := 0; i < x*y; i++ {
+		reader, _ := os.Open(path)
+		defer reader.Close()
+		im, _, err := image.Decode(reader)
+		if err != nil {
+			return nil, err
+		}
+		images[i] = im
+	}
+	collage, err := New(images, x, y)
+	return collage, err
+
 }
