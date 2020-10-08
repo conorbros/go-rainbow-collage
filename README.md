@@ -18,13 +18,27 @@ import collage "github.com/conorbros/go-rainbow-collage"
 // arguments require an array of images
 images := make([]*image.Image, 100)
 
-collage, _ := collage.New(images, 10, 10)
+collage, _ := collage.ProcessImages(images, 10, 10)
 
 // do something with the output
 outputImage, _ := os.Create("output.jpeg")
 
 jpeg.Encode(outputImage, collage, &jpeg.Options{Quality: 80})
 
+```
+
+```Go
+import collage "github.com/conorbros/go-rainbow-collage"
+
+// arguments require an array of images
+imagePaths := make([]*string, 100)
+
+collage, _ := collage.ProcessPaths(imagePaths, 10, 10)
+
+// do something with the output
+outputImage, _ := os.Create("output.jpeg")
+
+jpeg.Encode(outputImage, collage, &jpeg.Options{Quality: 80})
 ```
 
 ## Examples
