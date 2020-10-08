@@ -184,14 +184,16 @@ func sortImagesByHsv(entries []collageEntry) {
 }
 
 // New creates a collage from the array of images supplied and with the x/y dimensions specified
-func New(images []*image.Image, x int, y int) (*image.RGBA, error) {
+func New(images []*image.Image, x int, y int, sorted bool) (*image.RGBA, error) {
 	var entries = make([]collageEntry, len(images))
 
 	for i := range images {
 		entries[i].Image = images[i]
 	}
 
-	sortImagesByHsv(entries)
+	if !sorted {
+		sortImagesByHsv(entries)
+	}
 
 	rearrangeImages(entries, x, y)
 
@@ -212,12 +214,12 @@ func New(images []*image.Image, x int, y int) (*image.RGBA, error) {
 	return collage, nil
 }
 
-func ProcessImages(images []*image.Image, x int, y int) (*image.RGBA, error) {
-	collage, err := New(images, x, y)
+func ProcessImages(images []*image.Image, x int, y int, sorted bool) (*image.RGBA, error) {
+	collage, err := New(images, x, y, sorted)
 	return collage, err
 }
 
-func ProcessPaths(imageFilepaths []*string, x int, y int) (*image.RGBA, error) {
+func ProcessPaths(imageFilepaths []*string, x int, y int, sorted bool) (*image.RGBA, error) {
 	images := make([]*image.Image, x*y)
 
 	for i := 0; i < x*y; i++ {
@@ -229,7 +231,7 @@ func ProcessPaths(imageFilepaths []*string, x int, y int) (*image.RGBA, error) {
 		}
 		images[i] = im
 	}
-	collage, err := New(images, x, y)
+	collage, err := New(images, x, y, sorted)
 	return collage, err
 
 }
